@@ -19,7 +19,7 @@ int main() {
 			cout << sp;
 		}
 
-		for (k = 0; k < n - j + 1; k++) {
+		for (k = 0; k < n - j; k++) {
 			cout << hash;
 		}
 		cout << endl;
