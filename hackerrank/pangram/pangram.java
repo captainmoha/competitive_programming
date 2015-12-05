@@ -1,56 +1,52 @@
-package javatest1;
+// package javatest1;
 
-import java.util.Scanner;
 import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Iterator;
-import java.util.Set;
 
-class Pangram {
+class Main {
+
     public static void main(String[] args) {
+
+        // get the input
         Scanner input = new Scanner(System.in);
-        String S = input.next();
+        String S = input.nextLine();
         S = S.toLowerCase();
 
-        Dictionary<Character, Integer> alphabet = new Hashtable<Character, Integer>();
+        // create a hastable with chars as keys and ints as values
+        Map<Character, Integer> alphabet = new Hashtable<Character, Integer>();
 
-        alphabet.put('a', 0);
-        alphabet.put('b', 0);
-        alphabet.put('c', 0);
-        alphabet.put('d', 0);
-        alphabet.put('e', 0);
-        alphabet.put('f', 0);
-        alphabet.put('g', 0);
-        alphabet.put('h', 0);
-        alphabet.put('i', 0);
-        alphabet.put('j', 0);
-        alphabet.put('k', 0);
-        alphabet.put('l', 0);
-        alphabet.put('m', 0);
-        alphabet.put('n', 0);
-        alphabet.put('o', 0);
-        alphabet.put('p', 0);
-        alphabet.put('q', 0);
-        alphabet.put('r', 0);
-        alphabet.put('s', 0);
-        alphabet.put('t', 0);
-        alphabet.put('u', 0);
-        alphabet.put('v', 0);
-        alphabet.put('w', 0);
-        alphabet.put('x', 0);
-        alphabet.put('y', 0);
-        alphabet.put('z', 0);
-            
+        // fill the map with letters as keys and 0 as values
+        for (int j = 0; j < 26; j++) {
+
+            alphabet.put(((char)(j + 97)), 0);    // 97 is a in ascii
+        }
+
+        // go through the input string 
         for (int index = 0; index < S.length(); index++) {
             char current = S.charAt(index);
 
+            // check if the current char has a corresponding key in the map
+            if (alphabet.get(current) != null) {
+
+                // increment the pair which has the key
+                alphabet.put(current, alphabet.get(current) + 1);
+            }
+
         }
+
+        // go through the map
+        for (char key : alphabet.keySet()) {
+
+            // if one of the letters didn't occur in the string then it's over and the verdict is that it's not a pangram
+            if (alphabet.get(key) < 1) {
+                System.out.println("Input string is not a pangram");
+                return;
+            }
+        }
+
+        // if it survives the loop then it's all good
+        System.out.println("Input string is a pangram");
             
     }
 }
